@@ -23,7 +23,7 @@ Docker instalados en tu sistema.
 1. Clona este repositorio en tu máquina local:
 
    ```bash copyable
-   https://github.com/CodeGeekR/Docker_Python.git
+   git clone https://github.com/CodeGeekR/Docker_Python.git
 
    ```
 
@@ -65,7 +65,7 @@ Envía tus cambios a tu repositorio remoto: git push origin feature/nueva-funcio
 Abre un Pull Request en este repositorio principal.
 Si encuentras algún problema o tienes alguna sugerencia, abre un Issue en el repositorio. Estaré encantado de ayudarte.
 
-Comparte este proyecto con tus amigos y colegas. ¡Cuanta más gente lo utilice, mejor será!
+Comparte este proyecto con tus amigos y colegas.
 
 Agradecimientos
 ¡Gracias por tu interés en este proyecto! Esperamos que sea útil y te diviertas explorando y contribuyendo. Si tienes alguna pregunta, no dudes en contactarme.
