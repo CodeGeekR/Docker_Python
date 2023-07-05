@@ -16,7 +16,7 @@ Este proyecto es un eCommerce desarrollado en Python con el framework Django, qu
 
 ## Prerrequisitos
 
-Docker y Docker Compose instalados en tu sistema.
+Docker instalados en tu sistema.
 
 ## Pasos
 
@@ -48,7 +48,7 @@ Docker y Docker Compose instalados en tu sistema.
    - docker run: Este comando se utiliza para ejecutar un contenedor de Docker.
    - -it: Estos parámetros se utilizan para iniciar el contenedor en modo interactivo y asignarle una terminal.
    - -p 3000:80: Este parámetro se utiliza para mapear el puerto 80 del contenedor al puerto 3000 del host. Esto permite que el contenedor sea accesible desde el exterior a través del puerto 3000.
-   - -v <ruta_del_contenedor_incluye_folder_app>:/app ==> Este parámetro se utiliza para montar un volumen en el contenedor.
+   - -v <ruta_del_contenedor_incluye_folder_app>:/app ==> Este parámetro se utiliza para montar un volumen compartido en el contenedor.
 
 ## Contribuye
 
@@ -69,9 +69,3 @@ Comparte este proyecto con tus amigos y colegas. ¡Cuanta más gente lo utilice,
 
 Agradecimientos
 ¡Gracias por tu interés en este proyecto! Esperamos que sea útil y te diviertas explorando y contribuyendo. Si tienes alguna pregunta, no dudes en contactarme.
-
-¡Disfruta de tu experiencia de compra en línea con Django y Docker! 🛍️💻
-
-```
-
-```
