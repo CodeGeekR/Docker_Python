@@ -52,9 +52,9 @@ Docker instalados en tu sistema.
 
 ## Contribuye
 
-¡Te invitamos a contribuir a este proyecto y hacerlo aún mejor! 😊
+¡Te invito a contribuir a este proyecto y hacerlo aún mejor! 😊
 
-Si te gusta este proyecto, no olvides darle una estrellita ⭐️ en GitHub.
+Si te gusta este proyecto, no olvides darle una Star ⭐️ en GitHub.
 
 Si deseas contribuir con código, sigue estos pasos:
 
