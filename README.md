@@ -39,7 +39,7 @@ Docker instalados en tu sistema.
    docker build -t <nombre_imagen> .
    ```
 
-4. Ejecuta el contenedor de Docker a partir de una imagen llamada "app" y configura los puertos y volúmenes necesarios
+4. Ejecuta el contenedor de Docker a partir de una imagen y configura los puertos y volúmenes necesarios
 
    ```bash copyable
    docker run -it -p 3000:80 -v <ruta_del_contenedor_incluye_folder_app>:/app <nombre_imagen>
