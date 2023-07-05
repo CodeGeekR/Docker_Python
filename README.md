@@ -9,8 +9,6 @@ Este proyecto es un eCommerce desarrollado con Django y Docker, que te permite t
 Tienda en línea totalmente funcional desarrollada con Django.
 Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil.
 Gestión de usuarios, productos, carrito de compras y procesamiento de pedidos.
-Integración con pasarelas de pago para realizar transacciones seguras.
-Personalización de la tienda con opciones de diseño y configuración flexibles.
 Escalabilidad y rendimiento optimizados gracias al uso de Docker.
 
 ## Instrucciones de instalación
@@ -22,7 +20,11 @@ Docker y Docker Compose instalados en tu sistema.
 ## Pasos
 
 1. Clona este repositorio en tu máquina local:
-   `https://github.com/CodeGeekR/Docker_Python.git`
+
+   ```bash copyable
+   https://github.com/CodeGeekR/Docker_Python.git
+
+   ```
 
 2.
 
