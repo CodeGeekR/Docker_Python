@@ -2,14 +2,15 @@
 
 ## Descripción
 
-Este proyecto es un eCommerce desarrollado con Django y Docker, que te permite tener una tienda en línea lista para funcionar rápidamente utilizando contenedores Docker. La combinación de Django y Docker proporciona un entorno de desarrollo y despliegue consistente y fácil de configurar.
+Este proyecto es un eCommerce desarrollado en Python con el framework Django, que te permite tener una tienda en línea lista para funcionar rápidamente utilizando contenedores Docker. La combinación de Django y Docker proporciona un entorno de desarrollo y despliegue consistente y fácil de configurar.
 
 ## Características
 
-Tienda en línea totalmente funcional desarrollada con Django.
-Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil.
-Gestión de usuarios, productos, carrito de compras y procesamiento de pedidos.
-Escalabilidad y rendimiento optimizados gracias al uso de Docker.
+- Tienda en línea totalmente funcional desarrollada con Django.
+- Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil.
+- Gestión de usuarios, productos, busqueda de productos y procesamiento de pedidos.
+- API Rest para consumir los servicios desde el Frontend.
+- Escalabilidad y rendimiento optimizados gracias al uso de Docker.
 
 ## Instrucciones de instalación
 
@@ -26,7 +27,28 @@ Docker y Docker Compose instalados en tu sistema.
 
    ```
 
-2.
+2. Navega hasta el directorio del proyecto en la terminal:
+
+   ```bash copyable
+   cd <ruta_carpeta>
+   ```
+
+3. Construye una imagen de Docker a partir del archivo Dockerfile y etiquetarla con un nombre personalizado.
+
+   ```bash copyable
+   docker build -t <nombre_imagen> .
+   ```
+
+4. Ejecuta el contenedor de Docker a partir de una imagen llamada "app" y configura los puertos y volúmenes necesarios
+
+   ```bash copyable
+   docker run -it -p 3000:80 -v <ruta_del_contenedor_incluye_folder_app>:/app <nombre_imagen>
+   ```
+
+   - docker run: Este comando se utiliza para ejecutar un contenedor de Docker.
+   - -it: Estos parámetros se utilizan para iniciar el contenedor en modo interactivo y asignarle una terminal.
+   - -p 3000:80: Este parámetro se utiliza para mapear el puerto 80 del contenedor al puerto 3000 del host. Esto permite que el contenedor sea accesible desde el exterior a través del puerto 3000.
+   - -v <ruta_del_contenedor_incluye_folder_app>:/app ==> Este parámetro se utiliza para montar un volumen en el contenedor.
 
 ## Contribuye
 
@@ -49,3 +71,7 @@ Agradecimientos
 ¡Gracias por tu interés en este proyecto! Esperamos que sea útil y te diviertas explorando y contribuyendo. Si tienes alguna pregunta, no dudes en contactarme.
 
 ¡Disfruta de tu experiencia de compra en línea con Django y Docker! 🛍️💻
+
+```
+
+```
