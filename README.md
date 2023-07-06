@@ -6,7 +6,7 @@ Este proyecto es un eCommerce desarrollado en Python con el framework Django, qu
 
 ## Características
 
-- Tienda en línea totalmente funcional desarrollada con Django.
+- Backed para una tienda en linea desarrollada con Django.
 - Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil.
 - Gestión de usuarios, productos, busqueda de productos y procesamiento de pedidos.
 - API Rest para consumir los servicios desde el Frontend.
@@ -59,11 +59,12 @@ Si te gusta este proyecto, no olvides darle una Star ⭐️ en GitHub.
 Si deseas contribuir con código, sigue estos pasos:
 
 Haz un fork de este repositorio.
-Crea una rama con tu nueva funcionalidad: git checkout -b feature/nueva-funcionalidad.
-Realiza tus cambios y realiza commits: git commit -m "Añade nueva funcionalidad".
-Envía tus cambios a tu repositorio remoto: git push origin feature/nueva-funcionalidad.
-Abre un Pull Request en este repositorio principal.
-Si encuentras algún problema o tienes alguna sugerencia, abre un Issue en el repositorio. Estaré encantado de ayudarte.
+
+- Crea una rama con tu nueva funcionalidad: git checkout -b feature/nueva-funcionalidad.
+- Realiza tus cambios y realiza commits: git commit -m "Añade nueva funcionalidad".
+- Envía tus cambios a tu repositorio remoto: git push origin feature/nueva-funcionalidad.
+- Abre un Pull Request en este repositorio principal.
+  Si encuentras algún problema o tienes alguna sugerencia, abre un Issue en el repositorio. Estaré encantado de ayudarte.
 
 Comparte este proyecto con tus amigos y colegas.
 
