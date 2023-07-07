@@ -1,4 +1,4 @@
-# ¡Bienvenido al proyecto "Dockerized Django eCommerce"! 🚀
+# "Dockerized Django eCommerce"! 🚀
 
 ## Descripción
 
@@ -7,7 +7,7 @@ Este proyecto es un eCommerce desarrollado en Python con el framework Django, qu
 ## Características
 
 - Backed para una tienda en linea desarrollada con Django.
-- Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil.
+- Contenedores Docker preconfigurados para un entorno de desarrollo y despliegue fácil. (incluye configuración de imagen python, postgres, nginx)
 - Gestión de usuarios, productos, busqueda de productos y procesamiento de pedidos.
 - API Rest para consumir los servicios desde el Frontend.
 - Escalabilidad y rendimiento optimizados gracias al uso de Docker.
@@ -32,6 +32,14 @@ Docker instalados en tu sistema.
    ```bash copyable
    cd <ruta_carpeta>
    ```
+
+3. Construye las imágenes de Docker a partir del archivo docker-compose.yml
+
+   ```bash copyable
+   docker-compose up --build
+   ```
+
+Instrucciones para montar unicamente imagen docker aplicacion web Python
 
 3. Construye una imagen de Docker a partir del archivo Dockerfile y etiquetarla con un nombre personalizado.
 
