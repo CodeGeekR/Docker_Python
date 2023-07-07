@@ -23,12 +23,8 @@ COPY --from=volumen_instancia /app /app
 RUN pip install -r requirements.txt
 # RUN python app/manage.py migrate
 
-
 # Exponemos el puerto interno 80
 EXPOSE 80
 
 # Ejecutamos el comando para iniciar el servidor Django
 CMD python manage.py migrate && python manage.py runserver 0.0.0.0:80
-
-
-

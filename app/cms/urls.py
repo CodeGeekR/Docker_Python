@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -24,12 +25,19 @@ from django.views.generic import RedirectView
 admin.site.site_header = "Admin Colombian Mac Store"
 
 urlpatterns = [path('', RedirectView.as_view(url='/admin/')),
-               path('admin/', admin.site.urls),
-               path('accounts/', include('allauth.urls')),
-               path("shop/", include("shop.urls")),
-               path('dj-rest-auth/', include('dj_rest_auth.urls')),
-               path('auth/registration/', RegisterView.as_view(), name='rest_register'),
-               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        path('admin/', admin.site.urls),
+        path('accounts/', include('allauth.urls')),
+        path("shop/", include("shop.urls")),
+        path('dj-rest-auth/', include('dj_rest_auth.urls')),
+        path('auth/registration/', RegisterView.as_view(), name='rest_register'),
+        ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # path("", include("shop.urls", namespace="shop")),
 # path('api/auth/', include('rest_auth.urls')),

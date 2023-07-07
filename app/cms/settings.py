@@ -22,9 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h5u5(h64!7x+te4=@sguk@la+sgfqjspf9i1jglngu=!vf5_#q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nginx', 
+                'localhost',
+                '127.0.0.1',
+                ] # para que el backend acepte peticiones de cualquier origen
 
 # Application definition
 
@@ -99,6 +102,7 @@ REST_AUTH_REGISTER_VERIFICATION_ENABLED = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -110,12 +114,12 @@ MIDDLEWARE = [
 
 # configurar CSRF_FAILURE_VIEW para que pueda ejecutarse en Azure
 # CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
-CSRF_TRUSTED_ORIGINS = ['https://shopcms.azurewebsites.net',
-                        'https://shopcms.azurewebsites.net/',
-                        'https://shopcms.azurewebsites.net/admin/',
-                        'https://shopcms.azurewebsites.net/admin/login/',
-                        'https://shopcms.azurewebsites.net/admin/login/?next=/admin/',
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3009',
+                        'http://localhost:3010',
+                        'http://127.0.0.1:3009',
+                        'http://127.0.0.1:3010',
                         ]
+
 CSRF_USE_SESSIONS = False
 
 CORS_ORIGIN_ALLOW_ALL = False  # para que el backend acepte peticiones de cualquier origen
@@ -161,8 +165,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_docker',
+        'USER': 'postgres_docker',
+        'PASSWORD': 'admin',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -195,26 +203,37 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join('static'),
-]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# REST_AUTH_REGISTER_SERIALIZERS = {
-#    'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer',
-# }
 
 REST_AUTH = {
     'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer',
 }
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),
+]
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_URL = '/app/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATIC_URL = '/app/static/'
+# STATICFILES_DIRS = [
+#     os.path.join('static'),
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'

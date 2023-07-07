@@ -64,7 +64,8 @@ Haz un fork de este repositorio.
 - Realiza tus cambios y realiza commits: git commit -m "Añade nueva funcionalidad".
 - Envía tus cambios a tu repositorio remoto: git push origin feature/nueva-funcionalidad.
 - Abre un Pull Request en este repositorio principal.
-  Si encuentras algún problema o tienes alguna sugerencia, abre un Issue en el repositorio. Estaré encantado de ayudarte.
+
+Si encuentras algún problema o tienes alguna sugerencia, abre un Issue en el repositorio. Estaré encantado de ayudarte.
 
 Comparte este proyecto con tus amigos y colegas.
 
