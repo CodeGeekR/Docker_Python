@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-h5u5(h64!7x+te4=@sguk@la+sgfqjspf9i1jglngu=!vf5_#q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['188.40.64.184']
 
 # Application definition
 
@@ -108,21 +108,12 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # para que el backend acepte peticiones de cualquier origen
 ]
 
-# configurar CSRF_FAILURE_VIEW para que pueda ejecutarse en Azure
-# CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
-CSRF_TRUSTED_ORIGINS = ['https://shopcms.azurewebsites.net',
-                        'https://shopcms.azurewebsites.net/',
-                        'https://shopcms.azurewebsites.net/admin/',
-                        'https://shopcms.azurewebsites.net/admin/login/',
-                        'https://shopcms.azurewebsites.net/admin/login/?next=/admin/',
-                        ]
-CSRF_USE_SESSIONS = False
 
-CORS_ORIGIN_ALLOW_ALL = False  # para que el backend acepte peticiones de cualquier origen
+CORS_ORIGIN_ALLOW_ALL = True  # para que el backend acepte peticiones de cualquier origen
 # configuracion de corsheaders para que solo se permita el acceso a la api desde el frontend
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:5500',
-]
+# CORS_ORIGIN_WHITELIST = [
+#    'http://127.0.0.1:5500',
+# ]
 
 ROOT_URLCONF = 'cms.urls'
 
@@ -161,8 +152,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'postgres',
+        'PASSWORD': 'example',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
@@ -198,10 +193,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join('static'),
-]
+STATIC_URL = '/static/'
+# STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+STATIC_ROOT =  '/app/static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join('static'),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
