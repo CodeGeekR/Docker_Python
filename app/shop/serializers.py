@@ -51,37 +51,49 @@ class ProductoSearchSerializer(ModelSerializer):
         fields = ['id', 'nombreProducto']
 
 
-# CREAR SERIALIZER PARA UNA API UPDATEAPIVIEW DE DJ_REST_AUTH QUE PERMITA ACTUALIZAR LOS DATOS DE USER Y PROFILE EN LA MISMA API
-
-class ProfileSerializer(serializers.ModelSerializer):
+# Serializer para el modelo Profile
+class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('imagenProfile', 'telephone_number', 'address', 'department', 'city')
+        fields = ['imagenProfile', 'telephone_number', 'address', 'department', 'city']
 
-
-class UserSerializer(serializers.ModelSerializer):
+# Serializer para el modelo User y Profile
+class UserAndProfileSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'profile')
+        fields = ['username', 'email', 'first_name', 'last_name', 'profile']
 
     def create(self, validated_data):
-        profile_data = validated_data.pop('profile', {})
-        user = User.objects.create(**validated_data)
+        # Crear campos del modelo de usuario
+        profile_data = validated_data.pop('profile')
+        password = validated_data.get('password')
+        user = User(**validated_data)
+        if password:
+            user.set_password(password)
+        user.save()
         Profile.objects.create(user=user, **profile_data)
         return user
 
     def update(self, instance, validated_data):
-        profile_data = validated_data.pop('profile', {})
-        profile = instance.profile
+        # Actualizar campos del modelo de usuario
         instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        profile.telephone_number = profile_data.get('telephone_number', profile.telephone_number)
-        profile.address = profile_data.get('address', profile.address)
-        profile.department = profile_data.get('department', profile.department)
-        profile.city = profile_data.get('city', profile.city)
         instance.save()
-        profile.save()
+
+        # Actualizar campos del modelo de perfil
+        profile_data = validated_data.get('profile', {})
+        profile = instance.profile
+
+        if profile:
+            profile.imagenProfile = profile_data.get('imagenProfile', profile.imagenProfile)
+            profile.telephone_number = profile_data.get('telephone_number', profile.telephone_number)
+            profile.address = profile_data.get('address', profile.address)
+            profile.department = profile_data.get('department', profile.department)
+            profile.city = profile_data.get('city', profile.city)
+            profile.save()
+
         return instance

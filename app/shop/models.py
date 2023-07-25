@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+#from django.db.models.signals import post_save
 
 
 class Pais(models.Model):
@@ -56,10 +56,10 @@ class Profile(models.Model):
         verbose_name_plural = 'Perfiles'
         ordering = ['-date_created']
 
-    #
+    
     def __str__(self):
         return f'User ({self.user}):  {self.telephone_number}'
-
+    
     def get_available_cities(self):
         if self.department:
             return Ciudades.objects.filter(id_departamento=self.department)

@@ -3,7 +3,7 @@ from shop.views import UserListView
 from django.urls import re_path
 from .views import productoListApi, productoListMacBoxAPI, productoListMonitoresAPI, productoListPerifericosAPI, \
     productoListRedesAPI, productoListOfertasdelMesAPI, productoListPortatilesAPI, OrdendeCompraAPI, \
-    ProductoCreateAPI, UserSerializer, ProductDetailView, ProductoSearchAPIView
+    ProductoCreateAPI, UserAndProfileUpdateView, ProductDetailView, ProductoSearchAPIView
 from .views import categoriaListApi
 
 
@@ -27,5 +27,5 @@ urlpatterns = [
     re_path(r"^createproducto", ProductoCreateAPI.as_view(), name="createproducto"),
     re_path(r'^productDetail/(?P<pk>\d+)/$', ProductDetailView.as_view(), name='productDetail'),
     re_path(r'^productos_search/', ProductoSearchAPIView.as_view(), name='productos-search'),
-    re_path(r'^profile_update/', UserSerializer.as_view(), name='profile-update'),
+    re_path(r'^UserAndProfileUpdate/', UserAndProfileUpdateView.as_view(), name='UserAndProfileUpdate'),
 ]

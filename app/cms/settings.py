@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h5u5(h64!7x+te4=@sguk@la+sgfqjspf9i1jglngu=!vf5_#q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['nginx', 
                 'localhost',
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication', # para autenticacion con token
     ],
 }
 
@@ -174,6 +175,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get("DBNAME"),
+#         'USER': os.environ.get("DBUSER"),
+#         'PASSWORD': os.environ.get("DBPASS"),
+#         'HOST': os.environ.get("DBHOST"),
+#         'PORT': os.environ.get("DBPORT"),
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -203,37 +215,32 @@ USE_I18N = True
 
 USE_TZ = True
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-REST_AUTH = {
-    'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer',
-}
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),
-]
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+STATIC_ROOT =  '/app/static/'
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# MEDIA_URL = '/app/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# STATIC_URL = '/app/static/'
-# STATICFILES_DIRS = [
-#     os.path.join('static'),
-# ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'shop.serializers.CustomRegisterSerializer',
+}
+# TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+# STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# ]

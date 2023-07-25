@@ -26,5 +26,5 @@ RUN pip install -r requirements.txt
 # Exponemos el puerto interno 80
 EXPOSE 80
 
-# Ejecutamos el comando para iniciar el servidor Django
+# Ejecutamos el comando para hacer las migraciones a la BD, collectstatic e iniciar el servidor Django
 CMD python manage.py migrate && python manage.py runserver 0.0.0.0:80

@@ -30,7 +30,7 @@ urlpatterns = [path('', RedirectView.as_view(url='/admin/')),
         path("shop/", include("shop.urls")),
         path('dj-rest-auth/', include('dj_rest_auth.urls')),
         path('auth/registration/', RegisterView.as_view(), name='rest_register'),
-        ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

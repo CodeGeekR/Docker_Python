@@ -4,15 +4,17 @@ from django.views.generic import ListView
 from django.contrib.auth.models import User
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework import status, generics
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 
 from .models import Producto, Categoria, OrdendeCompra, Profile
 from django.contrib.auth.models import User, Group
 
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView, ListAPIView, \
     RetrieveUpdateDestroyAPIView, DestroyAPIView
-from .serializers import ProductoSerializer, CategoriaSerializer, OrdendeCompraSerializer, UserSerializer, \
+from .serializers import ProductoSerializer, CategoriaSerializer, OrdendeCompraSerializer, UserAndProfileSerializer, \
     ProductoSearchSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -120,10 +122,29 @@ class ProductoSearchAPIView(generics.ListAPIView):
 
 
 # Class para actualizar datos de usuario y profile en la misma API
+class UserAndProfileUpdateView(RetrieveUpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = UserAndProfileSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated] # Solo usuarios autenticados pueden acceder a esta API
+    allowed_methods = ['GET', 'PUT', 'POST', 'PATCH']
 
-class UserSerializer(CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+    def get_object(self):
+        # Obtener el perfil asociado al usuario actual
+        return Profile.objects.get(user=self.request.user)
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def put(self, request, *args, **kwargs):
+        # Sobrescribir el método put para manejar la actualización de todos los campos
+        return super().put(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        # Sobrescribir el método patch para manejar la actualización de campos específicos
+        return super().patch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        # Sobrescribir el método post para manejar la creación de nuevos datos
+        serializer = UserAndProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=HTTP_201_CREATED)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
